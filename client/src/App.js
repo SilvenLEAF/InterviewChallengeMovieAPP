@@ -4,42 +4,55 @@ import { BrowserRouter } from 'react-router-dom';
 
 import RootAppStucture from './PAGES/RootAppStructure';
 import RootContext from './contexts/RootContext';
-import { AuthContext } from './contexts/subContexts/AuthContext';
+import { MovieTopContext } from './contexts/subContexts/MovieTopContext';
 
 
 
 
 function App() {
-  const [userData, setUserData] = useState();
-  
 
+  const [topMovies, setTopMovies] = useState();
+  const [topLoading, setTopLoading] = useState(true);
+ 
+  
+  // GET TOP MOVIES
   useEffect(()=>{
-    const getLoggedInUser = async (e) =>{
-      const res = await fetch('/user');
-      const data = await res.json();
+    const getTopMovies = async () =>{
+      const response = await fetch(`/list`)
+      const data = await response.json();
+
       
-      console.log(data);
-      
-      if(data.user) {
-        setUserData(data.user);
-        
+      console.log(data)
+
+      if(data && data.results && data.results[0]){
+        setTopMovies(data.results);    
+                
+
+      } else {
+        setTopLoading(false);
       }
+
     }
 
-    getLoggedInUser();
+    getTopMovies();
 
   }, [])
 
 
 
 
+
+
   return (
     <BrowserRouter basename="/">
-      <AuthContext.Provider value={{ userData, setUserData }} >
+      <MovieTopContext.Provider value={{ topMovies, setTopMovies, topLoading, setTopLoading }} >
+        
         <RootContext >
           <div className="App"><RootAppStucture/></div>
         </RootContext>
-      </AuthContext.Provider>
+
+      </MovieTopContext.Provider>
+      
     </BrowserRouter>
   );
 }

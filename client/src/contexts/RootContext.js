@@ -1,13 +1,13 @@
 import React from 'react'
-import AllUserContextProvider from './subContexts/AllUserContext'
+import MovieSearchContextProvider from './subContexts/MovieSearchContext'
 
 function RootContext({ children }) {
   return (
     <>
       
-      <AllUserContextProvider>
+      <MovieSearchContextProvider>
         { children }
-      </AllUserContextProvider>
+      </MovieSearchContextProvider>
     
     </>
   )

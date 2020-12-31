@@ -12,7 +12,7 @@ function SpinningLoader({ title }) {
     <div className="container myLoaderHolder">
       <div>
         <h3 className="myLoadingTitle"> { title ? title : "Loading..." } </h3>
-        <div class="spinner">
+        <div className="spinner">
           <div></div>
           <div></div>
         </div>

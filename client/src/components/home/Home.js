@@ -1,6 +1,37 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+
+
+
+import PopularMovieItem from './PopularMovieItem';
+import MyLoader from '../../helpers/MyLoader';
+import MyWelcome from '../../helpers/MyWelcome';
+import { MovieTopContext } from '../../contexts/subContexts/MovieTopContext'
+
+
+
+
 
 function Home() {
+  
+  const { topMovies, setTopMovies, topLoading, setTopLoading } = useContext(MovieTopContext)
+  
+
+
+
+  
+
+
+
+  const loadingOrNull = topLoading ?
+   (        
+      <MyLoader/>        
+    ) : (        
+      <MyWelcome title="No movie found:(" />        
+    );
+
+
   return (
     <div className="bg-gray-100 p-0 subpixel-antialiased">
       <header className="px-4 py-3 shadow bg-blue-900">
@@ -46,143 +77,20 @@ function Home() {
           <h3 className="text-xl">Popular Movies & TV Series</h3>
 
           <div className="flex flex-wrap -mx-1 lg:-mx-4">
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/8wueWXrIkksKguZpVQL3Boabunq.jpg"
-                  />
-                </a>
 
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Aarya
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm">June 19, 2020</p>
-                </header>
-              </article>
-            </div>
+            {
+              !topMovies || (topMovies && !topMovies[0]) ?  loadingOrNull : (
+                topMovies[0] && topMovies.map((item, index)=>{
+                  return (
+                    
+                    <PopularMovieItem item={ item } />
+                    
+                  )
+                })
+              )
+            }
 
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/6dzmu9zn2OgKVQvhRCgcM9GpA92.jpg"
-                  />
-                </a>
-
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Criminal Justice
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm">April 5, 2019</p>
-                </header>
-              </article>
-            </div>
-
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/xXBnM6uSTk6qqCf0SRZKXcga9Ba.jpg"
-                  />
-                </a>
-
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Greyhound
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm">July 10, 2020</p>
-                </header>
-              </article>
-            </div>
-
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg"
-                  />
-                </a>
-
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Avengers: Infinity War
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm">April 27, 2018</p>
-                </header>
-              </article>
-            </div>
-
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/3zCcTOfMfDxFujLxBTFFbD60sDV.jpg"
-                  />
-                </a>
-
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Norsemen
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm"></p>
-                </header>
-              </article>
-            </div>
-
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-              <article className="overflow-hidden rounded-lg shadow-lg">
-                <a href="#">
-                  <img
-                    alt="Placeholder"
-                    className="block h-auto w-full"
-                    src="https://fwemoviedb.herokuapp.com/img/w1066_and_h600_bestv2/pFCiUmWcT3FrkTrvLJLbRYVl50X.jpg"
-                  />
-                </a>
-
-                <header
-                  className="flex items-center justify-between leading-tight p-2 md:p-4"
-                >
-                  <h1 className="text-lg">
-                    <a className="no-underline hover:underline text-black" href="#">
-                      Panchayat
-                    </a>
-                  </h1>
-                  <p className="text-grey-darker text-sm"></p>
-                </header>
-              </article>
-            </div>
+            
           </div>
         </section>
       </div>
