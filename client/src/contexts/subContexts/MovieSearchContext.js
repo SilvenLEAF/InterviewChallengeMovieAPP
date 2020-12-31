@@ -13,9 +13,10 @@ export const MovieSearchContext = createContext();
 
 
 function MovieSearchContextProvider(props) {
-  const [allSearchMovies, setAllSearchMovies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(true);
   return (
-    <MovieSearchContext.Provider value={{ allSearchMovies, setAllSearchMovies }} >
+    <MovieSearchContext.Provider value={{ searchResults, setSearchResults, searchLoading, setSearchLoading }} >
       { props.children }
     </MovieSearchContext.Provider>
   )
