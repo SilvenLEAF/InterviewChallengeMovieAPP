@@ -1,8 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+
+
+
+
 
 function PopularMovieItem({ item }) {
   return (
-    <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+    <Link to={ "/details/" + item.id } className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
     <article className="overflow-hidden rounded-lg shadow-lg">
       <a href="#">
         <img
@@ -23,7 +29,7 @@ function PopularMovieItem({ item }) {
         <p className="text-grey-darker text-sm"> { item.release_date || "no info given" } </p>
       </header>
     </article>
-  </div>
+  </Link>
   )
 }
 

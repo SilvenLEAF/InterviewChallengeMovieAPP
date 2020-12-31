@@ -20,6 +20,41 @@ function SearchResults() {
 
 
 
+
+  const handleSearchButtonClick = async ()=>{
+    try {
+      const response = await fetch(`/search/${ searchTerm }`)
+      
+            
+      const data = await response.json();
+      
+      
+
+      if(data && data.results && data.results[0]){
+        
+        setSearchTerm('');
+        setSearchResults(data.results);   
+        
+        
+        
+      } else {
+        
+        setSearchLoading(false);
+      
+                
+
+      }
+
+      history.push('/results');
+
+    } catch (err) {
+      setSearchLoading(false);
+      history.push('/results');
+    }
+  }
+
+
+
   const loadingOrNull = searchLoading ?
   (        
     <MyLoader/>        
@@ -53,9 +88,12 @@ function SearchResults() {
               className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
               type="text"
               placeholder="Movie or TV Series"
+              value={ searchTerm }
+              onChange={ e=> setSearchTerm(e.target.value) }
             />
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded-lg"
+              onClick={ handleSearchButtonClick }
             >
               Search
             </button>
