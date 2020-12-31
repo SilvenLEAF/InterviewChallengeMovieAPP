@@ -4,6 +4,10 @@ const fetch = require('node-fetch');
 
 
 
+
+/* ------------------------------------------
+.           GET POPULAR MOVIES
+------------------------------------------ */
 module.exports.get_popular_movies = async(req, res, next)=>{
   try {
     
@@ -22,6 +26,14 @@ module.exports.get_popular_movies = async(req, res, next)=>{
 
 
 
+
+
+
+
+
+/* ------------------------------------------
+.           SEARCH MOVIES
+------------------------------------------ */
 module.exports.search_movies_and_tv_shows = async(req, res, next)=>{
   try {
     
@@ -39,6 +51,13 @@ module.exports.search_movies_and_tv_shows = async(req, res, next)=>{
 
 
 
+
+
+
+
+/* ------------------------------------------
+.               SHOW DETAILS
+------------------------------------------ */
 module.exports.show_details = async(req, res, next)=>{
   try {
     
