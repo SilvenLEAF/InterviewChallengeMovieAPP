@@ -1,24 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 
+import MyLoader from '../../helpers/MyLoader'
 
 
 function Details() {
-  return (
+  const { id } = useParams()
+
+
+  const [item, setItem] = useState();
+  
+
+  
+  useEffect(()=>{
+    const getDetails = async () =>{
+      const response = await fetch(`/details/${ id }`);
+      const data = await response.json();
+
+      setItem(data);
+    };
+
+    getDetails();
+  }, []);
+
+
+  return !item ? (
+    <div className="myLoaderPageHolder">
+      <MyLoader/>
+    </div>
+  ) : (
     <div className="bg-gray-100 p-0 subpixel-antialiased">
       <header className="px-4 py-3 shadow bg-blue-900">
         <div className="container mx-auto flex">
           <div>
-            <h1
-              className="text-2xl text-gray-100 tracking-wider font-bold leading-none"
-            >
-              Fireworks
-            </h1>
-            <h2
-              className="text-sm text-gray-300 tracking-widest font-semibold uppercase leading-none"
-            >
-              Entertainment
-            </h2>
+            <Link to="/" >
+              <h1
+                  className="text-2xl text-gray-100 tracking-wider font-bold leading-none"
+                >
+                  Fireworks
+                </h1>
+                <h2
+                  className="text-sm text-gray-300 tracking-widest font-semibold uppercase leading-none"
+                >
+                  Entertainment
+                </h2>
+            </Link>
           </div>
           <div className="flex w-full ml-4">
             <input
@@ -36,16 +63,15 @@ function Details() {
       </header>
       <div className="container mx-auto p-4 flex">
         <img
-          src="https://fwemoviedb.herokuapp.com/img/w440_and_h660_face/r4jFaeVIPGl2zXEDtmwrx9orIY4.jpg"
-          alt="Aarya"
+          src={ `https://image.tmdb.org/t/p/w185${item.poster_path}` }
+          alt={ item.title }
           className="rounded h-64 mr-4"
         />
         <div className="w-full">
-          <h1 className="text-3xl">Aarya</h1>
-          <p className="text-grey-darker text-sm">June 19, 2020</p>
+          <h1 className="text-3xl">{ item.title || "No Title Given" }</h1>
+          <p className="text-grey-darker text-sm">{ item.release_date || "No Info Given" }</p>
           <p>
-            When her world suddenly turns upside down, will Aarya become the very
-            thing she hated?How far will she go to survive and protect her family?
+            { item.overview || "No Info Given" }
           </p>
         </div>
       </div>

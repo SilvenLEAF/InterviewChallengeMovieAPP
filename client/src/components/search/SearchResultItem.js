@@ -1,10 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+
 
 
 
 function SearchResultItem({ item }) {
   return (
-    <div className="max-w-sm w-full lg:max-w-full lg:flex mt-4">
+    <Link to={ "/details/" + item.id } className="max-w-sm w-full lg:max-w-full lg:flex mt-4">
+      
+        
+      
       <div
         className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
         style={{
@@ -29,7 +35,7 @@ function SearchResultItem({ item }) {
           <p className="text-gray-600">{ item.release_date || "No Info Given" }</p>
         </div>
       </div>
-    </div>
+    </Link>
 
 
   )

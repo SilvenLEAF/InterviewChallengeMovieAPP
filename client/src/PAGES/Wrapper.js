@@ -21,7 +21,7 @@ function Wrapper() {
 
         <Route exact path="/" component={Home} />
         <Route path="/results" component={SearchResults} />
-        <Route path="/details" component={Details} />
+        <Route path="/details/:id" component={Details} />
         
        
 
