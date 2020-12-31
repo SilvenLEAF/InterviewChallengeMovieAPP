@@ -4,7 +4,8 @@
   "description": "TEST Challenge to assess SilvenLEAF",
   "main": "app.js",
   "scripts": {
-    "start": "node app.ts",
+    "start": "node app.js",
+    "dev-start": "nodemon app.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
