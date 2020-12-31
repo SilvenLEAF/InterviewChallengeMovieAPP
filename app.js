@@ -38,7 +38,8 @@ app.use(express.static(path.join(__dirname, `client/build`)));
 /* -----------------------------------------
 .                   routes
 ----------------------------------------- */
-
+// MOVIE ROUTE
+app.use(require('./routes/MovieRoute'));
 
 
 // CATCH-ALL HANDLER
