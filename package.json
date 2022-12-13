@@ -24,7 +24,7 @@
   "homepage": "https://github.com/munpat/int-fullstack-manash-sarma#readme",
   "dependencies": {
     "chalk": "^4.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
